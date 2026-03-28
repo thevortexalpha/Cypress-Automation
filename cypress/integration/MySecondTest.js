@@ -11,6 +11,14 @@ describe("My Second test", () => {
 
         // Handling static dropdowns
         cy.get("select").select("option3").should("have.value", "option3");
+
+        // Handling dynamic dropdowns
+        cy.get("#autocomplete").type("Ind");
+        cy.get(".ui-menu-item div").each(($el, index, $list) => {
+            if($el.text() === "India") {
+                cy.wrap($el).click();
+            }
+        })
     });
 
 })
