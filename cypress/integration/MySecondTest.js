@@ -18,7 +18,15 @@ describe("My Second test", () => {
             if($el.text() === "India") {
                 cy.wrap($el).click();
             }
-        })
+        });
+        cy.get("#autocomplete").should("have.value", "India");
+
+        // Handling visibility of elements
+        cy.get("#displayed-text").should("be.visible");
+        cy.get("#hide-textbox").click();
+        cy.get("#displayed-text").should("not.be.visible");
+        cy.get("#show-textbox").click();
+        cy.get("#displayed-text").should("be.visible");
     });
 
 })
